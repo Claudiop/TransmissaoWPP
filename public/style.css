@@ -1,0 +1,219 @@
+html, body {
+    height: 100%;
+    margin: 0; /* Remove a margem padrão */
+    overflow: hidden; /* Impede que a página fique com scroll */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+header, footer {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 1em 0;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    height: 45px;
+    border: 2px solid #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(1);
+    background-color: #004085;
+}
+
+main {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.left, .right {
+    width: 48%; /* Ajusta o tamanho de ambas as colunas */
+}
+
+textarea {
+    padding: 10px;
+    width: 100%;
+    color: black;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.qr-code {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.qr-code img {
+    width: 400px;
+    height: 400px;
+}
+
+.log-box {
+    background-color: black;
+    color: lime;
+    font-family: monospace;
+    height: 100px;
+    width: 800px;
+    overflow-y: auto;
+    border: 1px solid lime;
+    text-align: left;
+}
+
+.right form {
+    width: 100%;
+    max-height: 472px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.areaMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    margin-left: 18px;
+    color: black;
+}
+
+.emoji-popup {
+    margin-top: 2px;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 200px;
+    width: 305px;
+    z-index: 9999;
+    overflow-y: auto;
+    overflow-x:hidden;
+}
+
+.emoji-popup .emoji {
+    width: 38px;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.emoji-popup .emoji:hover {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.bts_textarea{
+    display: flex;
+    flex-direction: row;
+}
+
+ul {
+    list-style-type: none; /* Remove os marcadores de todos os itens da lista */
+    padding: 0; /* Opcional: remove o preenchimento da lista */
+}
+
+li {
+    margin-left: 0; /* Remove o espaço extra do marcador */
+}
+
+.contactsList{
+    overflow-y: auto;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.contact-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    cursor: default;
+    transition: width 0.5s, height 0.5s, border ease-in-out 0.1s /* Suaviza a transição do aumento */
+}
+
+
+.enlarged {
+    width: 400px;
+    height: 400px;
+    border-radius: 10%;
+}
+
+.hovered {
+    border: 2px solid blue; /* Borda azul */
+}
+
+
+.contact-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-checkbox {
+    width: 24px; /* Ajusta o tamanho do checkbox */
+    height: 24px;
+    cursor: pointer;
+}
+
+.contact-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    word-wrap: break-word;
+    max-width: 200px; /* Define uma largura máxima para o texto */
+}
+

@@ -1,0 +1,30 @@
+{
+  "name": "transmissaowpp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "fs": "^0.0.1-security",
+    "ini": "^5.0.0",
+    "node-windows": "^1.0.0-beta.8",
+    "puppeteer": "^24.0.0",
+    "puppeteer-core": "^24.0.0",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1",
+    "whatsapp-web.js": "^1.26.0"
+  },
+
+  "pkg": {
+  "scripts": "app.js",
+  "assets": ["F:\\Programação\\NODE\\TransmissaoWPP\\**\\*"]
+}
+}

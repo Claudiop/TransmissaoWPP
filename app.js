@@ -1,4 +1,5 @@
 const fs = require('fs');
+const ini = require('ini');
 const path = require('path');
 const express = require('express');
 const { Client } = require('whatsapp-web.js');
@@ -7,7 +8,20 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
-const port = process.env.PORTA || 3000;
+
+
+function loadConfig() {
+    const configPath = path.join(__dirname, 'config.ini');
+    if (fs.existsSync(configPath)) {
+        const config = ini.parse(fs.readFileSync(configPath, 'utf-8'));
+        console.log('__dirname:', __dirname);
+        console.log('Porta encontrada:', config.config.PORTA);
+        return config.config.PORTA || 3000; // Se PORTA não estiver no config.ini, usar a porta padrão 3000
+    }
+    return 3000; // Se o arquivo não existir, usa a porta padrão
+}
+
+const port = loadConfig();
 
 // Criar servidor HTTP e conectar o Socket.IO
 const server = http.createServer(app);

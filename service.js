@@ -10,8 +10,8 @@ function loadConfig() {
     if (fs.existsSync(configPath)) {
         const config = ini.parse(fs.readFileSync(configPath, 'utf-8'));
         console.log('__dirname:', __dirname);
-        console.log('Porta encontrada:', config);
-        return config.PORTA || 3000; // Se PORTA não estiver no config.ini, usar a porta padrão 3000
+        console.log('Porta encontrada:', config.config.PORTA);
+        return config.config.PORTA || 3000; // Se PORTA não estiver no config.ini, usar a porta padrão 3000
     }
     return 3000; // Se o arquivo não existir, usa a porta padrão
 }

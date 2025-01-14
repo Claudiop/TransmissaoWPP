@@ -33,7 +33,7 @@ Source: ".\TransmissaoWPP.url"; DestDir: "{app}"; Flags: ignoreversion recursesu
 ; Crie atalhos no menu iniciar e para desinstalar
 Name: "{group}\TransmissaoWPP"; Filename: "{app}\app.js"; WorkingDir: "{app}"
 Name: "{group}\Uninstall"; Filename: "{uninstallexe}"
-Name: "{userdesktop}\TransmissaoWPP"; Filename: "{app}\TransmissaoWPP.url"; WorkingDir: "{app}"; IconFilename: "{app}\imgs\favicon.png"; IconIndex: 0
+Name: "{userdesktop}\TransmissaoWPP"; Filename: "{app}\TransmissaoWPP.url"; WorkingDir: "{app}"; IconFilename: "{app}\imgs\favicon.ico"; IconIndex: 0
 
 [Run]
 ; Baixa e instala o Node.js automaticamente, se necess�rio

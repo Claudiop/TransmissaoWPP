@@ -10,7 +10,7 @@ Compression=lzma2
 SolidCompression=yes
 
 ; Adicionar Fornecedor (Publisher)
-AppPublisher=Nome do Fornecedor
+AppPublisher=AplicacoesCPH
 
 ; Adicionar GUID único para o aplicativo
 AppId={{c53568bc-c977-45d1-8371-158335067d4a}}
@@ -23,15 +23,17 @@ Source: ".\config.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\contacts.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\package.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\imgs\*"; DestDir: "{app}\imgs"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: ".\node_modules\.bin\*"; DestDir: "{app}\node_modules\.bin"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: ".\node_modules\npm\*"; DestDir: "{app}\node_modules\npm"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: ".\public\*"; DestDir: "{app}\public"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: ".\views\*"; DestDir: "{app}\views"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: ".\TransmissaoWPP.url"; DestDir: "{app}\TransmissaoWPP"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: ".\TransmissaoWPP.url"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 ; Crie atalhos no menu iniciar e para desinstalar
 Name: "{group}\TransmissaoWPP"; Filename: "{app}\app.js"; WorkingDir: "{app}"
 Name: "{group}\Uninstall"; Filename: "{uninstallexe}"
-Name: "{userdesktop}\TransmissaoWPP"; Filename: "{app}\TransmissaoWPP"; WorkingDir: "{app}"; IconFilename: "{app}\TransmissaoWPP"; IconIndex: 0
+Name: "{userdesktop}\TransmissaoWPP"; Filename: "{app}\TransmissaoWPP.url"; WorkingDir: "{app}"; IconFilename: "{app}\imgs\favicon.png"; IconIndex: 0
 
 [Run]
 ; Baixa e instala o Node.js automaticamente, se necessï¿½rio

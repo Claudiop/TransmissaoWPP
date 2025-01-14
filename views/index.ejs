@@ -49,6 +49,7 @@ title="Dicas:
                     </ul>
                 </form>
                 <button id="updateContactsBtn" type="button" onclick="loadContacts()">Atualizar Lista</button>
+                <button id="selectAll" type="button">Marcar Todos</button>
             </div>            
         </div>
     </main>
@@ -299,42 +300,71 @@ title="Dicas:
     </script>
 
     <script>
+        // Variáveis globais para o termo de busca acumulado e o timeout
+        let searchTerm = ''; // Termo acumulado com as letras digitadas
+        let searchTimeout; // Referência para o timeout
+    
         document.addEventListener('keydown', function (event) {
             const letter = event.key.toLowerCase(); // Obtém a letra pressionada
             if (letter >= 'a' && letter <= 'z') {
-                // Se for uma letra (a-z), executa a rolagem
+                // Se for uma letra (a-z), executa a lógica de busca
                 event.preventDefault();
-                scrollToContactStartingWith(letter);
+                scrollToContactMatching(letter);
             }
         });
-
-        function scrollToContactStartingWith(letter) {
-            //console.log("LL: ", letter);
-            const contacts = document.querySelectorAll('.contact-container'); // Todos os contatos
-            let found = false;
-        
-            // Perceba que estamos apenas verificando a primeira letra
-            //console.log("LD: ", contacts);
-            for (let contact of contacts) {
-                const contactName = contact.querySelector('.contact-name').textContent.trim().toLowerCase();
-                if (contactName.startsWith(letter.toLowerCase())) {
-                    const rect = contact.getBoundingClientRect();
-                    if (rect.top < 0) {
-                        contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else if (rect.bottom > window.innerHeight) {
-                        contact.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    
+        function scrollToContactMatching(letter) {
+            const formContainer = document.getElementById('contactsForm'); // O container do formulário
+            const contacts = formContainer.querySelectorAll('.contact-container'); // Contatos dentro do formulário
+    
+            // Adiciona a letra ao termo acumulado
+            searchTerm += removeAccents(letter.toLowerCase());
+    
+            // Limpa o timeout anterior
+            clearTimeout(searchTimeout);
+    
+            // Configura o timeout para buscar após 2 segundos de inatividade
+            searchTimeout = setTimeout(() => {
+                let found = false;
+    
+                for (let contact of contacts) {
+                    const contactName = contact.querySelector('.contact-name').textContent.trim().toLowerCase();
+                    const normalizedContactName = removeAccents(contactName); // Remove os acentos do nome
+    
+                    if (normalizedContactName.includes(searchTerm)) {
+                        // Obtém a posição do contato em relação ao container
+                        const containerRect = formContainer.getBoundingClientRect();
+                        const contactRect = contact.getBoundingClientRect();
+    
+                        // Calcula a posição do contato dentro do container
+                        const offsetTop = contactRect.top - containerRect.top + formContainer.scrollTop;
+    
+                        // Altere o scroll apenas do container do formulário
+                        formContainer.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+    
+                        found = true;
+                        break; // Para no primeiro contato encontrado
                     }
-                    found = true;
-                    break; // Sai do loop após encontrar o primeiro contato que começa com a letra
                 }
-            }
-        
-            // Caso não encontre um nome que comece com a letra, você pode querer rolar até o topo ou manter a posição
-            if (!found) {
-                console.log(`Nenhum contato encontrado começando com '${letter}'`);
-            }
+    
+                if (!found) {
+                    console.log(`Nenhum contato encontrado contendo '${searchTerm}'`);
+                }
+    
+                // Reseta o termo de busca após 2 segundos de inatividade
+                searchTerm = '';
+            }, 900); // 2 segundos
+        }
+    
+        // Função para remover acentos de uma string
+        function removeAccents(str) {
+            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         }
     </script>
+    
 
     <script>
         // Função para alternar a visibilidade do popup de emojis
@@ -388,6 +418,19 @@ title="Dicas:
         // Carregar os emojis quando a página for carregada
         document.addEventListener('DOMContentLoaded', loadEmojis);
 
+    </script>
+    <script>
+        const selectAllButton = document.getElementById("selectAll");
+        const checkboxes = document.getElementsByClassName("contact-checkbox");
+        console.log(checkboxes);
+        let allSelected = false;
+        // Função para alternar entre marcar e desmarcar
+        selectAllButton.addEventListener("click", () => {
+            allSelected = !allSelected; // Alterna o estado
+            Array.from(checkboxes).forEach(checkbox => checkbox.checked = allSelected);
+            updateContacts();
+            selectAllButton.textContent = allSelected ? "Desmarcar Todos" : "Marcar Todos";
+        });
     </script>
 </body>
 </html>

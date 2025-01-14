@@ -198,7 +198,7 @@ app.get('/contacts', async (req, res) => {
         const filteredContacts = contacts.filter(contact => contact.pushname);
         // Verifica se o tamanho dos contatos armazenados é diferente do tamanho dos contatos atuais
         //console.log('contactsCache.length', contactsCache.length, "  --contacts.length:", filteredContacts.length);
-        if (contactsCache.length !== contacts.length) {
+        if (contactsCache.length !== filteredContacts.length) {
             console.log('O número de contatos mudou. Atualizando a lista...');
             await updateContacts(); // Chama a função de atualização se os tamanhos forem diferentes
         }

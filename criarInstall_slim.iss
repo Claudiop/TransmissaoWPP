@@ -4,8 +4,8 @@ AppName=TransmissaoWPP
 AppVersion=1.0
 DefaultDirName={pf}\TransmissaoWPP
 DefaultGroupName=TransmissaoWPP
-OutputDir=./Setup/
-OutputBaseFilename=Instalador_TransmissaoWPP
+OutputDir=./Install/
+OutputBaseFilename=Instalador_TransmissaoWPP_Slim
 Compression=lzma2
 SolidCompression=yes
 
@@ -22,11 +22,10 @@ Source: ".\service.js"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\config.ini"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\contacts.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: ".\package.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\node_modules\*"; DestDir: "{app}\node_modules"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: ".\imgs\*"; DestDir: "{app}\imgs"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: ".\public\*"; DestDir: "{app}\public"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: ".\views\*"; DestDir: "{app}\views"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: ".\TransmissaoWPP.url"; DestDir: "{app}\TransmissaoWPP.url"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: ".\TransmissaoWPP.url"; DestDir: "{app}\TransmissaoWPP"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 ; Crie atalhos no menu iniciar e para desinstalar

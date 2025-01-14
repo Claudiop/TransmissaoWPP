@@ -337,7 +337,7 @@ title="Dicas:
                     const contactName = contact.querySelector('.contact-name').textContent.trim().toLowerCase();
                     const normalizedContactName = removeAccents(contactName); // Remove os acentos do nome
     
-                    if (normalizedContactName.includes(searchTerm)) {
+                    if (normalizedContactName.startsWith(searchTerm)) {
                         // Obtém a posição do contato em relação ao container
                         const containerRect = formContainer.getBoundingClientRect();
                         const contactRect = contact.getBoundingClientRect();

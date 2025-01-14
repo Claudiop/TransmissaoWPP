@@ -28,12 +28,14 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"
 
 [Run]
 ; Baixa e instala o Node.js automaticamente, se necessário
-Filename: "powershell.exe"; Parameters: "-Command ""Start-Process -FilePath 'msiexec.exe' -ArgumentList '/i https://nodejs.org/dist/v16.20.0/node-v16.20.0-x64.msi /quiet /norestart' -Wait"""; Flags: shellexec; Description: "Instalando Node.js..."
+Filename: "powershell.exe"; Parameters: "-Command Start-Process -FilePath 'msiexec.exe' -ArgumentList '/i https://nodejs.org/dist/v16.20.0/node-v16.20.0-x64.msi /quiet /norestart' -NoNewWindow -Wait"; Flags: shellexec waituntilterminated; Description: "Instalando Node.js..."
 
 ; Garante que o Node.js está no PATH ou localize dinamicamente
-Filename: "powershell.exe"; Parameters: "-Command if (!(Get-Command node.exe -ErrorAction SilentlyContinue)) {{ Write-Host 'Node.js não encontrado no PATH!'; Start-Sleep -Seconds 10; Exit 1 }}"; Flags: shellexec waituntilterminated; Description: "Verificando Node.js..."
+Filename: "powershell.exe"; Parameters: "-Command if (!(Get-Command node.exe -ErrorAction SilentlyContinue)) {{ Write-Host 'Node.js não encontrado no PATH!'; Start-Sleep -Seconds 10; Exit 1 }}"; Flags: shellexec waituntilterminated; Description: "Verificando Node.js..."; MinVersion: 0,6.0;
+
 ; Instala dependências com npm
-Filename: "{app}\node_modules\.bin\npm.cmd"; Parameters: "install"; WorkingDir: "{app}"; Flags: shellexec waituntilterminated
+Filename: "{app}\node_modules\.bin\npm.cmd"; Parameters: "install"; WorkingDir: "{app}"; Flags: shellexec waituntilterminated; Description: "Instalando dependências..."
 
 ; Inicia o serviço Node.js
-Filename: "powershell.exe"; Parameters: "-Command Start-Process -FilePath 'node' -ArgumentList '{app}\service.js' -Wait; Start-Sleep -Seconds 10"; WorkingDir: "{app}"; Flags: shellexec waituntilterminated; Description: "Executando o serviço..."
+Filename: "cmd.exe"; Parameters: "/c node ""{app}\service.js"" && timeout /t 3"; WorkingDir: "{app}"; Flags: shellexec waituntilterminated; Description: "Executando o serviço..."
+

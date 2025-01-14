@@ -305,6 +305,12 @@ title="Dicas:
         let searchTimeout; // Referência para o timeout
     
         document.addEventListener('keydown', function (event) {
+            const activeElement = document.activeElement; // Elemento atualmente em foco
+            if (activeElement.tagName.toLowerCase() === 'textarea') {
+                // Se o elemento em foco for um textarea, não faz nada
+                return;
+            }
+        
             const letter = event.key.toLowerCase(); // Obtém a letra pressionada
             if (letter >= 'a' && letter <= 'z') {
                 // Se for uma letra (a-z), executa a lógica de busca
